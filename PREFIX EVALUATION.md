@@ -1,40 +1,63 @@
-# Exp.No:34  
-## PREFIX EVALUATION
+# Exp.No: 4  
+# Evaluation of prefix expression
 
----
+## AIM : 
 
-### AIM  
-To write a Python program to evaluate a user-given Prefix expression using a stack. The expression must contain operators such as Multiplication, Addition, and Subtraction.
+To implement a Python program that evaluates a valid prefix expression using a stack and supports basic binary operators (+, -, *, /) with single-digit numbers.
 
----
+## ALGORITHM :
 
-### ALGORITHM
+Step 1 : Define a set of operators: +, -, *, /.
 
-1. **Start the program.**
-2. Define a set of valid operators: `*, -, +, %, /, **`.
-3. Initialize an empty stack.
-4. Traverse the prefix expression from **right to left**:
-   - If the character is a **digit**, convert it to an integer and push it onto the stack.
-   - If the character is an **operator**, pop two elements from the stack.
-     - Apply the operator on the two popped operands.
-     - Push the result back onto the stack.
-   - If an invalid character is encountered, raise an error.
-5. After traversal, the stack should contain only **one element**.
-6. Return the **single element** as the evaluation result.
-7. **End the program.**
+Step 2 : Read the prefix expression as a space-separated string from the user.
 
----
+Step 3 : Split the string into tokens and reverse the order for evaluation (since it's prefix).
 
-### PROGRAM
+Step 4 : Traverse each token:
+
+a) If it's a number, convert it to float and push onto the stack.
+
+b) If it's an operator, pop two values from the stack, apply the operator, and push the result back.
+
+Step 5 : After traversal, the stack will have one element — the final result.
+
+Step 6 : Return and display the result.
+
+## PROGRAM :
 
 ```
+OPERATORS=set(['*','-','+','/'])
+stack=[]
+    
+def prefix_Eval(x):
+    for i in x[::-1]:
+        if i not in OPERATORS:
+            stack.append(float(i))
+        else:
+            a=stack.pop()
+            b=stack.pop()
+            
+            if i=='+':
+                stack.append(a+b)
+            elif i=='-':
+                stack.append(a-b)
+            elif i=='*':
+                stack.append(a*b)
+            elif i=='/':
+                stack.append(a/b)
+    return stack[0]
 
-
+m =input()
+print("The prefix expression is",m)
+n=m.split()
+print("The result is",prefix_Eval(n))
 ```
 
+## OUTPUT :
 
-### OUTPUT
+![image](https://github.com/user-attachments/assets/9424a18b-8e5f-4ae0-b560-162da1643fd8)
 
+## RESULT :
 
+Thus the  implemention of  a Python program that evaluates a valid prefix expression using a stack and supports basic binary operators (+, -, *, /) with single-digit numbers is verified successfully.
 
-### RESULT
